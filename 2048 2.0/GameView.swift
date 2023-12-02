@@ -9,29 +9,37 @@ import SwiftUI
 import Foundation
 
 struct GameView: View {
-    @ObservedObject var viewModel: GameView
-    
+    @ObservedObject var viewModel: GameViewModel
+
     var body: some View {
-        // A grid of views representing the game board
         VStack {
             ForEach(0..<viewModel.size, id: \.self) { row in
                 HStack {
                     ForEach(0..<viewModel.size, id: \.self) { column in
-                        Text("\(viewModel.grid[row][column])")
-                            .frame(width: 60, height: 60)
-                            .background(Color.blue.opacity(0.5))
-                            .cornerRadius(8)
+                        // Check if there is a tile at the given position
+                        if let tile = viewModel.grid[row][column] {
+                            // If there is a tile, display its value
+                            Text("\(tile.value)")
+                                .frame(width: 60, height: 60)
+                                .background(Color.blue.opacity(0.5))
+                                .cornerRadius(8)
+                        } else {
+                            // If there is not a tile, display an empty space
+                            Text("")
+                                .frame(width: 60, height: 60)
+                                .background(Color.blue.opacity(0.5))
+                                .cornerRadius(8)
+                        }
                     }
                 }
             }
         }
-        .gesture(DragGesture()
-            .onEnded { gesture in
-                // Determine direction and make corresponding move
-            }
-        )
+        .gesture(DragGesture().onEnded { gesture in
+            // Determine direction and make corresponding move
+        })
     }
 }
+
 
 
 

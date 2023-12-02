@@ -8,12 +8,17 @@
 import Foundation
 
 class GameModel {
-    var grid: [[Int]]
+    var grid: [[Tile?]]
     var score: Int = 0
     
     init(size: Int) {
-        grid = Array(repeating: Array(repeating: 0, count: size), count: size)
-        // Initialize with two tiles
+        grid = Array(repeating: Array(repeating: nil, count: size), count: size)
+
+            for row in 0..<size {
+                for col in 0..<size {
+                    grid[row][col] = Tile(value: 0, col: col, row: row)
+                }
+            }
         addRandomTile()
         addRandomTile()
     }
@@ -21,8 +26,9 @@ class GameModel {
     // Functions to add tiles, move tiles, merge tiles, etc.
     
     func addRandomTile() {
-        // Logic to add a new tile at a random position
+        
     }
+    
     
     // Movement functions
     func swipeLeft() {

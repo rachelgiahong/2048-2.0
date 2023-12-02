@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var viewModel = GameViewModel(size: 4)
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -15,10 +17,10 @@ struct ContentView: View {
                     .font(.largeTitle)
                     .padding()
                 
-                GameView(viewModel: GameViewModel)
+                GameView(viewModel: viewModel)
 
                 // A button that, when tapped, will navigate to the GameView
-                NavigationLink(destination: GameView(viewModel: GameViewModel(size: 4), username: "Player 1")) {
+                NavigationLink(destination: GameView(viewModel: GameViewModel(size: 4))) {
                     Text("Start Game")
                         .foregroundColor(.white)
                         .padding()
@@ -32,7 +34,3 @@ struct ContentView: View {
         }
     }
 }
-
-
-
-

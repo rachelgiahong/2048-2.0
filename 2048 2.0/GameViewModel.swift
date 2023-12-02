@@ -12,7 +12,7 @@ import Combine
 class GameViewModel: ObservableObject {
     @Published var model: GameModel
     
-    var grid: [[Int]] {
+    var grid: [[Tile?]] {
         model.grid
     }
     

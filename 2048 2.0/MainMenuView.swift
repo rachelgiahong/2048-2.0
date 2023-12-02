@@ -22,7 +22,7 @@ struct MainMenuView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
 
-                NavigationLink(destination: GameView(viewModel: viewModel, username: username), isActive: $isGameViewActive) {
+                NavigationLink(destination: GameView(viewModel: viewModel), isActive: $isGameViewActive) {
                     Button("Start Game") {
                         isGameViewActive = true
                     }
