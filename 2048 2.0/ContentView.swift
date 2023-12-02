@@ -14,6 +14,8 @@ struct ContentView: View {
                 Text("2048 Game")
                     .font(.largeTitle)
                     .padding()
+                
+                GameView(viewModel: GameViewModel)
 
                 // A button that, when tapped, will navigate to the GameView
                 NavigationLink(destination: GameView(viewModel: GameViewModel(size: 4), username: "Player 1")) {
@@ -30,3 +32,7 @@ struct ContentView: View {
         }
     }
 }
+
+
+
+
