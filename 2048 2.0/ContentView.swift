@@ -9,18 +9,24 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+        NavigationView {
+            VStack {
+                Text("2048 Game")
+                    .font(.largeTitle)
+                    .padding()
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+                // A button that, when tapped, will navigate to the GameView
+                NavigationLink(destination: GameView(viewModel: GameViewModel(size: 4), username: "Player 1")) {
+                    Text("Start Game")
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(8)
+                }
+
+                // You can add more buttons or views for other features
+                // For example, a button to view high scores or settings
+            }
+        }
     }
 }
