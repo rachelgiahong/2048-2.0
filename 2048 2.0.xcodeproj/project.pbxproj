@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D6495792B1C0BF9004CA4B7 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6495782B1C0BF9004CA4B7 /* Board.swift */; };
+		6D64957B2B1C0C64004CA4B7 /* Side.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D64957A2B1C0C64004CA4B7 /* Side.swift */; };
 		F1A2E5C12B1BDB7600D72AF6 /* _048_2_0App.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A2E5C02B1BDB7600D72AF6 /* _048_2_0App.swift */; };
 		F1A2E5C32B1BDB7600D72AF6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A2E5C22B1BDB7600D72AF6 /* ContentView.swift */; };
 		F1A2E5C52B1BDB7800D72AF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1A2E5C42B1BDB7800D72AF6 /* Assets.xcassets */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D6495782B1C0BF9004CA4B7 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		6D64957A2B1C0C64004CA4B7 /* Side.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Side.swift; sourceTree = "<group>"; };
 		F1A2E5BD2B1BDB7600D72AF6 /* 2048 2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "2048 2.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1A2E5C02B1BDB7600D72AF6 /* _048_2_0App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _048_2_0App.swift; sourceTree = "<group>"; };
 		F1A2E5C22B1BDB7600D72AF6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 				F1A2E5C02B1BDB7600D72AF6 /* _048_2_0App.swift */,
 				F1A2E5C22B1BDB7600D72AF6 /* ContentView.swift */,
 				F1A2E5F02B1BE67A00D72AF6 /* GameModel.swift */,
+				6D6495782B1C0BF9004CA4B7 /* Board.swift */,
+				6D64957A2B1C0C64004CA4B7 /* Side.swift */,
 				F1A2E5F22B1BE6B500D72AF6 /* GameViewModel.swift */,
 				F1A2E5EC2B1BDD8E00D72AF6 /* MainMenuView.swift */,
 				F1A2E5EE2B1BDDB600D72AF6 /* GameView.swift */,
@@ -204,9 +210,9 @@
 		F1A2E5B52B1BDB7600D72AF6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					F1A2E5BC2B1BDB7600D72AF6 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -274,10 +280,12 @@
 			files = (
 				F1A2E5F32B1BE6B500D72AF6 /* GameViewModel.swift in Sources */,
 				F1A2E5F12B1BE67A00D72AF6 /* GameModel.swift in Sources */,
+				6D64957B2B1C0C64004CA4B7 /* Side.swift in Sources */,
 				F1A2E5ED2B1BDD8E00D72AF6 /* MainMenuView.swift in Sources */,
 				F1A2E5F52B1BF86300D72AF6 /* Tile.swift in Sources */,
 				F1A2E5C32B1BDB7600D72AF6 /* ContentView.swift in Sources */,
 				F1A2E5EF2B1BDDB600D72AF6 /* GameView.swift in Sources */,
+				6D6495792B1C0BF9004CA4B7 /* Board.swift in Sources */,
 				F1A2E5C12B1BDB7600D72AF6 /* _048_2_0App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,6 +359,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -411,6 +420,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

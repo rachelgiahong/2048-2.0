@@ -25,10 +25,10 @@ class GameViewModel: ObservableObject {
     }
     
     // Call model functions based on user input
-    func swipeLeft() {
-        model.swipeLeft()
-        objectWillChange.send() // Notify the view to update
-    }
+//    func swipeLeft() {
+//        model.swipeLeft()
+//        objectWillChange.send() // Notify the view to update
+//    }
     
     // Additional methods for other swipes
 }

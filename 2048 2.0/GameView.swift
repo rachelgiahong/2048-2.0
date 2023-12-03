@@ -19,7 +19,7 @@ struct GameView: View {
                         // Check if there is a tile at the given position
                         if let tile = viewModel.grid[row][column] {
                             // If there is a tile, display its value
-                            Text("\(tile.value)")
+                            Text("\(tile.getValue())")
                                 .frame(width: 60, height: 60)
                                 .background(Color.blue.opacity(0.5))
                                 .cornerRadius(8)
