@@ -12,6 +12,10 @@ class Board: Sequence {
     private var viewPerspective: Side
 
     init(size: Int) {
+        guard size > 0 else {
+            fatalError("Invalid size: \(size). Size must be greater than 0.")
+        }
+
         values = Array(repeating: Array(repeating: nil, count: size), count: size)
         viewPerspective = Side.north
     }
