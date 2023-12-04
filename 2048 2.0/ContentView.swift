@@ -18,8 +18,6 @@ struct ContentView: View {
                     .padding()
                 
                 GameView(viewModel: viewModel)
-
-                // A button that, when tapped, will navigate to the GameView
                 NavigationLink(destination: GameView(viewModel: GameViewModel(size: 4))) {
                     Text("Start Game")
                         .foregroundColor(.white)
@@ -28,8 +26,6 @@ struct ContentView: View {
                         .cornerRadius(8)
                 }
 
-                // You can add more buttons or views for other features
-                // For example, a button to view high scores or settings
             }
         }
     }

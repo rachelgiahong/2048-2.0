@@ -6,66 +6,43 @@
 //
 
 import Foundation
+import Combine
 
 class GameModel: ObservableObject {
-    private let board: Board
-    private var score: Int
-    private var maxScore: Int
-    private var gameOver: Bool
-    var model: GameModel
-    
+    @Published var board: Board
+    @Published var score: Int
+    @Published var maxScore: Int
+    @Published var gameOver: Bool
+
     static let MAX_PIECE = 2048
-    
+
+    // Assuming Board has a size property, grid array and methods for game logic
     init(size: Int) {
         board = Board(size: size)
         score = 0
         maxScore = 0
         gameOver = false
-        model = GameModel(size: size)
     }
     
-    convenience init(rawValues: [[Int?]], score: Int, maxScore: Int, gameOver: Bool) {
-        let size = rawValues.count
-        self.init(size: size)
-        board.clear()
-        for col in 0..<size {
-            for row in 0..<size {
-                if let value = rawValues[row][col] {
-                    let tile = Tile.create(value: value, col: col, row: row)
-                    board.addTile(tile: tile)
-                }
-            }
-        }
-        self.score = score
-        self.maxScore = maxScore
-        self.gameOver = gameOver
-    }
-    
-    convenience init(rawValues: [[Int?]], score: Int, maxScore: Int) {
-        self.init(rawValues: rawValues, score: score, maxScore: maxScore, gameOver: false)
+    // The size of the board is a computed property that retrieves the size from the Board object
+    var size: Int {
+        board.size()
     }
 
-    var grid: [[Tile?]] {
-            model.grid
-        }
-    
-    func tile(col: Int, row: Int) -> Tile? {
-        return board.tile(col: col, row: row)
-    }
-    
-    func size() -> Int {
-        return board.size()
+    func startGame() {
+        board.clear() // Clears the board for a new game
+        board.spawnRandomTile()
+        board.spawnRandomTile()
+        // No need to update grid here as Board object should already handle its state
     }
     
     func isGameOver() -> Bool {
-        checkGameOver()
-        if gameOver {
-            maxScore = max(score, maxScore)
-        }
+        // Implement game over logic here
         return gameOver
     }
     
     func currentScore() -> Int {
+        // Implement current score calculation here
         return score
     }
     
@@ -219,5 +196,6 @@ class GameModel: ObservableObject {
         }
         return false
     }
+    
 }
 

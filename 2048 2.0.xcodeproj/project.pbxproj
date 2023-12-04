@@ -45,7 +45,7 @@
 		6D64957A2B1C0C64004CA4B7 /* Side.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Side.swift; sourceTree = "<group>"; };
 		F1A2E5BD2B1BDB7600D72AF6 /* 2048 2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "2048 2.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1A2E5C02B1BDB7600D72AF6 /* _048_2_0App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _048_2_0App.swift; sourceTree = "<group>"; };
-		F1A2E5C22B1BDB7600D72AF6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F1A2E5C22B1BDB7600D72AF6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; };
 		F1A2E5C42B1BDB7800D72AF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1A2E5C72B1BDB7800D72AF6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F1A2E5CD2B1BDB7800D72AF6 /* 2048 2.0Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "2048 2.0Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };

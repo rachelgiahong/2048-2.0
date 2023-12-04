@@ -6,17 +6,21 @@
 //
 
 import SwiftUI
-import Foundation
 
 struct GameView: View {
     @ObservedObject var viewModel: GameViewModel
 
     var body: some View {
         VStack {
+            // Display the current score
+            Text("Score: \(viewModel.currentScore)")
+                .font(.headline)
+                .padding()
+
+            // Display the game board
             ForEach(0..<viewModel.size, id: \.self) { row in
                 HStack {
                     ForEach(0..<viewModel.size, id: \.self) { column in
-                        // Check if there is a tile at the given position
                         if let tile = viewModel.grid[row][column] {
                             // If there is a tile, display its value
                             Text("\(tile.getValue())")
@@ -35,13 +39,11 @@ struct GameView: View {
             }
         }
         .gesture(DragGesture().onEnded { gesture in
-            // Determine direction and make corresponding move
+            // Add logic to determine direction and call viewModel methods to update the game state
         })
+        .onAppear {
+            viewModel.startGame() // Start the game when this view appears
+        }
     }
 }
-
-
-
-
-
 

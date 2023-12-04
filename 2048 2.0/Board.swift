@@ -7,9 +7,22 @@
 
 import Foundation
 
-class Board: Sequence {
+class Board {
     private var values: [[Tile?]]
     private var viewPerspective: Side
+    
+    var grid: [[Tile?]] {
+        var tilesGrid = [[Tile?]]()
+        let size = self.size()
+        for row in 0..<size {
+            var rowTiles = [Tile?]()
+            for col in 0..<size {
+                rowTiles.append(self.tile(col: col, row: row)) // Use `self` instead of `board`
+            }
+            tilesGrid.append(rowTiles)
+        }
+        return tilesGrid
+    }
 
     init(size: Int) {
         guard size > 0 else {
@@ -34,6 +47,34 @@ class Board: Sequence {
                     }
                 }
             }
+        }
+    
+    func spawnRandomTile() {
+           let emptyPositions = findEmptyPositions()
+           
+           guard let randomPosition = emptyPositions.randomElement() else {
+               return // No available positions to place a new tile
+           }
+           
+           let tileValue = Int.random(in: 1...10) == 1 ? 4 : 2 // 10% chance of being a 4
+           let newTile = Tile(value: tileValue, col: randomPosition.col, row: randomPosition.row)
+           self.setTile(newTile, at: randomPosition)
+       }
+    
+    private func setTile(_ tile: Tile, at position: (row: Int, col: Int)) {
+            values[position.row][position.col] = tile
+        }
+    
+    private func findEmptyPositions() -> [(row: Int, col: Int)] {
+            var emptyPositions = [(row: Int, col: Int)]()
+            for row in 0..<self.size() {
+                for col in 0..<self.size() {
+                    if self.tile(col: col, row: row) == nil {
+                        emptyPositions.append((row, col))
+                    }
+                }
+            }
+            return emptyPositions
         }
 
     func setViewingPerspective(side: Side) {

@@ -46,6 +46,9 @@ class Tile: Equatable {
         return result
     }
 
+
+        
+    
     func merge(col: Int, row: Int, otherTile: Tile) -> Tile {
         precondition(value == otherTile.getValue(), "Values must be equal for merging.")
         let mergedTile = Tile(value: 2 * value, col: col, row: row)
