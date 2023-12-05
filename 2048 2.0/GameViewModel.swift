@@ -15,26 +15,24 @@ class GameViewModel: ObservableObject {
         model.board.getValues()
     }
     
-    // Use a computed property to get the size from the model
+  
     var size: Int {
-        model.size // If size is a property in GameModel, access it without parentheses
-    }
+            model.size
+        }
     
-    var playerName: String = "" // Set this when you initialize the GameViewModel
+    var playerName: String = ""
     
     var currentScore: Int {
-        // Adjust this calculation based on your GameModel and Tile class implementations
-        return grid.flatMap { $0 }.compactMap { $0 }.reduce(0) { $0 + ($1.getValue() ?? 0) }
-    }
+            
+        return grid.flatMap { $0 }.compactMap { $0 }.reduce(0) { $0 + ($1.getValue() ) }
+        }
     
     init(size: Int) {
-        model = GameModel(size: size)
-        // After initializing the GameModel, call the startGame method
-        startGame() // Make sure this method exists and is implemented in GameModel
-    }
+            model = GameModel(size: size)
+        }
     
     func startGame() {
-        model.startGame() // Delegate the call to the model's startGame method
+        model.startGame()
     }
     
     // Implement swipe methods which call model's respective methods and send updates to the view

@@ -57,11 +57,29 @@ enum Side {
 
     // Methods or computed properties that use the computed properties
     func col(_ c: Int, _ r: Int, _ size: Int) -> Int {
-        return col0 * (size - 1) + c * drow + r * dcol
+        switch self {
+        case .north:
+            return c
+        case .south:
+            return size - 1 - c
+        case .east:
+            return r
+        case .west:
+            return size - 1 - r
+        }
     }
 
     func row(_ c: Int, _ r: Int, _ size: Int) -> Int {
-        return row0 * (size - 1) - c * dcol + r * drow
+        switch self {
+        case .north:
+            return r
+        case .south:
+            return size - 1 - r
+        case .east:
+            return size - 1 - c
+        case .west:
+            return c
+        }
     }
 
     // Static method to get the opposite side

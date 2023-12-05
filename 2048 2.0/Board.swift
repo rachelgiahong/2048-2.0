@@ -89,8 +89,12 @@ class Board {
     }
 
     func tile(col: Int, row: Int) -> Tile? {
-        return values[viewPerspective.col(col, row, size())][viewPerspective.row(col, row, size())]
-    }
+            if col < 0 || col >= size() || row < 0 || row >= size() {
+                // Return nil if the indices are out of bounds
+                return nil
+            }
+            return values[row][col]
+        }
 
     func clear() {
         values = Array(repeating: Array(repeating: nil, count: size()), count: size())
@@ -101,23 +105,43 @@ class Board {
     }
 
     func move(col: Int, row: Int, tile: Tile) -> Bool {
-        let pcol = viewPerspective.col(col, row, size())
-        let prow = viewPerspective.row(col, row, size())
-
-        guard tile.getCol() != pcol || tile.getRow() != prow else {
+        // Step 1: Validate initial position
+        guard col >= 0, col < size(), row >= 0, row < size() else {
+            print("Initial position out of bounds.")
             return false
         }
 
-        let tile1 = self.tile(col: col, row: row)
-        values[tile.getCol()][tile.getRow()] = nil
+        // Step 2: Calculate target position based on viewPerspective
+        let targetCol = viewPerspective.col(col, row, size())
+        let targetRow = viewPerspective.row(col, row, size())
 
-        if let tile1 = tile1 {
-            values[pcol][prow] = tile.merge(col: pcol, row: prow, otherTile: tile1)
-            return true
+        // Step 3: Validate target position
+        guard targetCol >= 0, targetCol < size(), targetRow >= 0, targetRow < size() else {
+            print("Target position out of bounds.")
+            return false
+        }
+
+        // Additional check to prevent moving a tile to its current position
+        guard !(tile.getCol() == targetCol && tile.getRow() == targetRow) else {
+            return false
+        }
+
+        // Step 4: Move the tile
+        if let existingTile = self.tile(col: targetCol, row: targetRow) {
+            // Merge tiles if they have the same value
+            if tile.getValue() == existingTile.getValue() {
+                values[targetCol][targetRow] = tile.merge(col: targetCol, row: targetRow, otherTile: existingTile)
+                values[tile.getCol()][tile.getRow()] = nil
+                return true
+            }
+            return false // Cannot merge different valued tiles
         } else {
-            values[pcol][prow] = tile.move(col: pcol, row: prow)
-            return false
+            // Move tile to the empty target position
+            values[targetCol][targetRow] = tile.move(col: targetCol, row: targetRow)
+            values[tile.getCol()][tile.getRow()] = nil
+            return true
         }
+        
     }
     
     func makeIterator() -> AllTileIterator {

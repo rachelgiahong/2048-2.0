@@ -30,15 +30,18 @@ class GameModel: ObservableObject {
     }
 
     func startGame() {
-        board.clear() // Clears the board for a new game
-        board.spawnRandomTile()
-        board.spawnRandomTile()
-    }
+            board.clear()
+            board.spawnRandomTile()
+            board.spawnRandomTile()
+        }
+        
     
     func isGameOver() -> Bool {
         // Implement game over logic here
         return gameOver
     }
+    
+    
     
     func currentScore() -> Int {
         // Implement current score calculation here
