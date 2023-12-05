@@ -13,7 +13,7 @@ class Tile: Equatable {
     private let col: Int
     private var next: Tile?
 
-    private init(value: Int, col: Int, row: Int) {
+    public init(value: Int, col: Int, row: Int) {
         self.value = value
         self.row = row
         self.col = col

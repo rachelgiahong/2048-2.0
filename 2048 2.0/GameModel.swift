@@ -33,7 +33,6 @@ class GameModel: ObservableObject {
         board.clear() // Clears the board for a new game
         board.spawnRandomTile()
         board.spawnRandomTile()
-        // No need to update grid here as Board object should already handle its state
     }
     
     func isGameOver() -> Bool {

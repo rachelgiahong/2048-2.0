@@ -76,6 +76,9 @@ class Board {
             }
             return emptyPositions
         }
+    func getValues() -> [[Tile?]] {
+        return values
+    }
 
     func setViewingPerspective(side: Side) {
         viewPerspective = side

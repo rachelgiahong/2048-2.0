@@ -11,7 +11,7 @@ enum Side {
     case north, east, south, west
 
     // Computed properties instead of stored properties
-    private var col0: Int {
+    public var col0: Int {
         switch self {
         case .north, .south:
             return 0
@@ -22,7 +22,7 @@ enum Side {
         }
     }
 
-    private var row0: Int {
+    public var row0: Int {
         switch self {
         case .north:
             return 0
@@ -33,7 +33,7 @@ enum Side {
         }
     }
 
-    private var dcol: Int {
+    public var dcol: Int {
         switch self {
         case .east:
             return 1
@@ -44,7 +44,7 @@ enum Side {
         }
     }
 
-    private var drow: Int {
+    public var drow: Int {
         switch self {
         case .north:
             return 1

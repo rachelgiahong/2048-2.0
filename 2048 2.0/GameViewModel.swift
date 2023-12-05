@@ -12,7 +12,7 @@ class GameViewModel: ObservableObject {
     @Published var model: GameModel
     
     var grid: [[Tile?]] {
-        model.grid
+        model.board.getValues()
     }
     
     // Use a computed property to get the size from the model
@@ -24,7 +24,7 @@ class GameViewModel: ObservableObject {
     
     var currentScore: Int {
         // Adjust this calculation based on your GameModel and Tile class implementations
-        return grid.flatMap { $0 }.compactMap { $0 }.reduce(0) { $0 + ($1.value ?? 0) }
+        return grid.flatMap { $0 }.compactMap { $0 }.reduce(0) { $0 + ($1.getValue() ?? 0) }
     }
     
     init(size: Int) {
@@ -38,5 +38,21 @@ class GameViewModel: ObservableObject {
     }
     
     // Implement swipe methods which call model's respective methods and send updates to the view
+    func swipeUp() {
+        model.tilt(side: Side.north)
+    }
+    
+    func swipeDown() {
+        model.tilt(side: Side.south)
+    }
+    
+    func swipeLeft() {
+        model.tilt(side: Side.east)
+    }
+    
+    func swipeRight() {
+        model.tilt(side: Side.west)
+    }
+    
 }
 

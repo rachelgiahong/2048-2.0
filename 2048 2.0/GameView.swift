@@ -38,9 +38,32 @@ struct GameView: View {
                 }
             }
         }
-        .gesture(DragGesture().onEnded { gesture in
-            // Add logic to determine direction and call viewModel methods to update the game state
-        })
+        .gesture(
+            DragGesture().onEnded { gesture in
+                let dragThreshold: CGFloat = 100.0 // Define the minimum distance for a swipe to be recognized
+
+                let verticalAmount = gesture.translation.height
+                let horizontalAmount = gesture.translation.width
+
+                if abs(horizontalAmount) > abs(verticalAmount) {
+                    if horizontalAmount < -dragThreshold {
+                        // Swipe Left
+                        viewModel.swipeLeft()
+                    } else if horizontalAmount > dragThreshold {
+                        // Swipe Right
+                        viewModel.swipeRight()
+                    }
+                } else {
+                    if verticalAmount < -dragThreshold {
+                        // Swipe Up
+                        viewModel.swipeUp()
+                    } else if verticalAmount > dragThreshold {
+                        // Swipe Down
+                        viewModel.swipeDown()
+                    }
+                }
+            }
+        )
         .onAppear {
             viewModel.startGame() // Start the game when this view appears
         }
