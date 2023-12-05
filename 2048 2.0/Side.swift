@@ -32,6 +32,8 @@ enum Side {
             return -1
         }
     }
+    
+    
 
     public var dcol: Int {
         switch self {

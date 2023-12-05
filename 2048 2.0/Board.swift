@@ -7,8 +7,8 @@
 
 import Foundation
 
-class Board {
-    private var values: [[Tile?]]
+class Board: ObservableObject {
+    @Published var values: [[Tile?]]
     private var viewPerspective: Side
     
     var grid: [[Tile?]] {
@@ -25,43 +25,65 @@ class Board {
     }
 
     init(size: Int) {
-        guard size > 0 else {
-            fatalError("Invalid size: \(size). Size must be greater than 0.")
-        }
-
-        values = Array(repeating: Array(repeating: nil, count: size), count: size)
-        viewPerspective = Side.north
-    }
-    
-    init(rawValues: [[Int]]) {
-            let size = rawValues.count
+            guard size > 0 else {
+                fatalError("Invalid size: \(size). Size must be greater than 0.")
+            }
+            
+            // Initialize 'values' before using 'self'
             values = Array(repeating: Array(repeating: nil, count: size), count: size)
             viewPerspective = Side.north
-
+            
+            // Now that all properties are initialized, you can use 'self'
+        }
+        
+        init(rawValues: [[Int]]) {
+            let size = rawValues.count
+            // Initialize 'values' before using 'self'
+            values = Array(repeating: Array(repeating: nil, count: size), count: size)
+            viewPerspective = Side.north
+            
+            // Now that all properties are initialized, you can use 'self'
             for col in 0..<size {
                 for row in 0..<size {
                     let value = rawValues[size - 1 - row][col]
                     if value != 0 {
                         let tile = Tile.create(value: value, col: col, row: row)
-                        addTile(tile: tile)
+                        self.addTile(tile: tile)
                     }
                 }
             }
         }
     
+//    func spawnRandomTile() {
+//           let emptyPositions = findEmptyPositions()
+//
+//           guard let randomPosition = emptyPositions.randomElement() else {
+//               return // No available positions to place a new tile
+//           }
+//
+//           let tileValue = Int.random(in: 1...10) == 1 ? 4 : 2 // 10% chance of being a 4
+//           let newTile = Tile(value: tileValue, col: randomPosition.col, row: randomPosition.row)
+//            self.setTile(newTile, at: randomPosition)
+//            self.objectWillChange.send()
+//       }
+//
+//    private func setTile(_ tile: Tile, at position: (row: Int, col: Int)) {
+//            values[position.row][position.col] = tile
+//        }
     func spawnRandomTile() {
-           let emptyPositions = findEmptyPositions()
-           
-           guard let randomPosition = emptyPositions.randomElement() else {
-               return // No available positions to place a new tile
-           }
-           
-           let tileValue = Int.random(in: 1...10) == 1 ? 4 : 2 // 10% chance of being a 4
-           let newTile = Tile(value: tileValue, col: randomPosition.col, row: randomPosition.row)
-           self.setTile(newTile, at: randomPosition)
-       }
-    
-    private func setTile(_ tile: Tile, at position: (row: Int, col: Int)) {
+            let emptyPositions = findEmptyPositions()
+            guard let randomPosition = emptyPositions.randomElement() else {
+                return // No available positions to place a new tile
+            }
+            
+            let tileValue = Int.random(in: 1...10) == 1 ? 4 : 2 // 10% chance of being a 4
+            let newTile = Tile(value: tileValue, col: randomPosition.col, row: randomPosition.row)
+            setTile(newTile, at: randomPosition)
+        }
+        
+        // Make sure setTile triggers a change notification
+        private func setTile(_ tile: Tile, at position: (row: Int, col: Int)) {
+            objectWillChange.send() // Notify before changing
             values[position.row][position.col] = tile
         }
     
@@ -104,31 +126,26 @@ class Board {
         values[tile.getCol()][tile.getRow()] = tile
     }
 
+    
     func move(col: Int, row: Int, tile: Tile) -> Bool {
-        // Step 1: Validate initial position
         guard col >= 0, col < size(), row >= 0, row < size() else {
             print("Initial position out of bounds.")
             return false
         }
 
-        // Step 2: Calculate target position based on viewPerspective
         let targetCol = viewPerspective.col(col, row, size())
         let targetRow = viewPerspective.row(col, row, size())
 
-        // Step 3: Validate target position
         guard targetCol >= 0, targetCol < size(), targetRow >= 0, targetRow < size() else {
             print("Target position out of bounds.")
             return false
         }
 
-        // Additional check to prevent moving a tile to its current position
         guard !(tile.getCol() == targetCol && tile.getRow() == targetRow) else {
             return false
         }
 
-        // Step 4: Move the tile
         if let existingTile = self.tile(col: targetCol, row: targetRow) {
-            // Merge tiles if they have the same value
             if tile.getValue() == existingTile.getValue() {
                 values[targetCol][targetRow] = tile.merge(col: targetCol, row: targetRow, otherTile: existingTile)
                 values[tile.getCol()][tile.getRow()] = nil
