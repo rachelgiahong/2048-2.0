@@ -10,7 +10,6 @@ import Foundation
 enum Side {
     case north, east, south, west
 
-    // Computed properties instead of stored properties
     public var col0: Int {
         switch self {
         case .north, .south:
@@ -57,7 +56,7 @@ enum Side {
         }
     }
 
-    // Methods or computed properties that use the computed properties
+   
     func col(_ c: Int, _ r: Int, _ size: Int) -> Int {
         switch self {
         case .north:
@@ -84,7 +83,6 @@ enum Side {
         }
     }
 
-    // Static method to get the opposite side
     static func opposite(_ side: Side) -> Side {
         switch side {
         case .north:

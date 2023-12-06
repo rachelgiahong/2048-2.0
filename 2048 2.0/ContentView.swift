@@ -12,20 +12,27 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                Text("2048 Game")
-                    .font(.largeTitle)
-                    .padding()
-                
-                GameView(viewModel: viewModel)
-                NavigationLink(destination: GameView(viewModel: GameViewModel(size: 4))) {
-                    Text("Start Game")
+            ZStack {
+                LinearGradient(gradient: Gradient(colors: [Color.blue, Color.blue.opacity(0.5)]), startPoint: .top, endPoint: .bottom)
+                    .edgesIgnoringSafeArea(.all)
+                VStack {
+                    Text("3076")
+                        .font(.system(size: 60, weight:
+                                .black, design: .rounded))
                         .foregroundColor(.white)
-                        .padding()
-                        .background(Color.blue)
-                        .cornerRadius(8)
+                        .shadow(color: .black.opacity(0.5), radius: 10, x: 5, y: 5)
+                        .padding(.bottom, 50)
+                    
+                    GameView(viewModel: viewModel)
+                    NavigationLink(destination: GameView(viewModel: GameViewModel(size: 4))) {
+                        Text("Play Game")
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(8)
+                    }
+                    
                 }
-
             }
         }
     }

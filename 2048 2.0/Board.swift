@@ -29,20 +29,16 @@ class Board: ObservableObject {
                 fatalError("Invalid size: \(size). Size must be greater than 0.")
             }
             
-            // Initialize 'values' before using 'self'
             values = Array(repeating: Array(repeating: nil, count: size), count: size)
             viewPerspective = Side.north
             
-            // Now that all properties are initialized, you can use 'self'
         }
         
         init(rawValues: [[Int]]) {
             let size = rawValues.count
-            // Initialize 'values' before using 'self'
             values = Array(repeating: Array(repeating: nil, count: size), count: size)
             viewPerspective = Side.north
             
-            // Now that all properties are initialized, you can use 'self'
             for col in 0..<size {
                 for row in 0..<size {
                     let value = rawValues[size - 1 - row][col]
@@ -54,22 +50,7 @@ class Board: ObservableObject {
             }
         }
     
-//    func spawnRandomTile() {
-//           let emptyPositions = findEmptyPositions()
-//
-//           guard let randomPosition = emptyPositions.randomElement() else {
-//               return // No available positions to place a new tile
-//           }
-//
-//           let tileValue = Int.random(in: 1...10) == 1 ? 4 : 2 // 10% chance of being a 4
-//           let newTile = Tile(value: tileValue, col: randomPosition.col, row: randomPosition.row)
-//            self.setTile(newTile, at: randomPosition)
-//            self.objectWillChange.send()
-//       }
-//
-//    private func setTile(_ tile: Tile, at position: (row: Int, col: Int)) {
-//            values[position.row][position.col] = tile
-//        }
+
     func spawnRandomTile() {
             let emptyPositions = findEmptyPositions()
             guard let randomPosition = emptyPositions.randomElement() else {

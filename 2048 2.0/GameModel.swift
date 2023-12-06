@@ -14,9 +14,9 @@ class GameModel: ObservableObject {
     @Published var maxScore: Int
     @Published var gameOver: Bool
 
-    static let MAX_PIECE = 2048
+    static let MAX_PIECE = 3072
 
-    // Assuming Board has a size property, grid array and methods for game logic
+    
     init(size: Int) {
         board = Board(size: size)
         score = 0
@@ -24,7 +24,7 @@ class GameModel: ObservableObject {
         gameOver = false
     }
     
-    // The size of the board is a computed property that retrieves the size from the Board object
+    
     var size: Int {
         board.size()
     }
@@ -37,14 +37,12 @@ class GameModel: ObservableObject {
         
     
     func isGameOver() -> Bool {
-        // Implement game over logic here
         return gameOver
     }
     
     
     
     func currentScore() -> Int {
-        // Implement current score calculation here
         return score
     }
     
